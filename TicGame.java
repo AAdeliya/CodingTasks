@@ -76,7 +76,7 @@ public class TicGame {
             displayBoard();
             boolean Win = CheckVertical();
             System.out.println(" You win " + Win);
-            
+            //
         }
         }
        public static void displayBoard(){
