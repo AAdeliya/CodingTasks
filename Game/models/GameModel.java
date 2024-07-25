@@ -1,14 +1,27 @@
 package Game.models;
 
 public class GameModel {
-    public int[][] board = new int[3][3];
-
-    public GameModel() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board[i][j] = 0;
+    //private static final int[][] board = new int[3][3];
+    private static final int BOARD_SIZE = 3; 
+    public static final int[][] board = new int[BOARD_SIZE][BOARD_SIZE];
+    
+    
+    private void initializeBoard() {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                board[i][j] = 0;  // Explicitly set all positions to 0
             }
         }
+    }
+
+
+    public GameModel() {
+        initializeBoard();
+        // for (int i = 0; i < 3; i++) {
+        //     for (int j = 0; j < 3; j++) {
+        //         board[i][j] = 0;
+        //     }
+        // }
     }
 
     public boolean isValidMove(int row, int col) {
