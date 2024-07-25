@@ -29,8 +29,9 @@ public class GameView {
 
         }else{
         Random random = new Random();
-        int row = random.nextInt(2);
-        int col = random.nextInt(2);
+        int row = random.nextInt(3);
+        int col = random.nextInt(3);
+        System.out.println("row" + row + "col" + col);
         return new int[]{row, col};
     
     }
