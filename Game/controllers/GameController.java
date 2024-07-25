@@ -34,6 +34,10 @@ public class GameController {
             } else {
                 view.displayMessage("Invalid move, try again.");
             }
+            if(model.isBoardFull()){
+                view.displayMessage("The board is full! The game is over!");
+                break;
+            }
             
         }
     }}

@@ -48,6 +48,7 @@ public class GameModel {
         // Combine CheckVertical, CheckHorizontal, CheckDiagonal here
         return checkVertical() || checkHorizontal() || checkDiagonal();
     }
+    
 
     private boolean checkVertical() {
         for (int col = 0; col < 3; col++) {
@@ -71,10 +72,20 @@ public class GameModel {
         return (board[0][0] != 0 && board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
                (board[0][2] != 0 && board[0][2] == board[1][1] && board[1][1] == board[2][0]);
     }
-    private boolean humanHuman(){
-
-        return true;
-
+    
+    public boolean isBoardFull() {
+        
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                if(board[i][j] == 0){
+                    return false;
+                 
+                }
+                
+            }
+            
+        }
+        return true; //only return true if no empty spots were found 
     }
 }
 
