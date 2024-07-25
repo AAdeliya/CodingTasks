@@ -1,8 +1,10 @@
 package Game.models;
 
+import java.util.Random;
+
 public class GameModel {
     //private static final int[][] board = new int[3][3];
-    private static final int BOARD_SIZE = 3; 
+    protected static final int BOARD_SIZE = 3; 
     public static final int[][] board = new int[BOARD_SIZE][BOARD_SIZE];
     
     
@@ -33,6 +35,14 @@ public class GameModel {
             board[row][col] = player;
         }
     }
+    // public void makeMoveComputer(int player) {
+    //     Random random = new Random();
+    //     int row = random.nextInt(BOARD_SIZE);
+    //     int col = random.nextInt(BOARD_SIZE);
+    //     if (isValidMove(row, col)) {
+    //         board[row][col] = player;
+    //     }
+    // }
 
     public boolean checkWin() {
         // Combine CheckVertical, CheckHorizontal, CheckDiagonal here
@@ -60,6 +70,11 @@ public class GameModel {
     private boolean checkDiagonal() {
         return (board[0][0] != 0 && board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
                (board[0][2] != 0 && board[0][2] == board[1][1] && board[1][1] == board[2][0]);
+    }
+    private boolean humanHuman(){
+
+        return true;
+
     }
 }
 

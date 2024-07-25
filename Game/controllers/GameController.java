@@ -14,13 +14,18 @@ public class GameController {
     }
 
     public void startGame() {
-        while (true) {
+        int type = view.typeOfGame();
+         while (true) {
             view.displayBoard(model.board);
             int currentPlayer = isPlayer1Turn ? 1 : 2;
+            boolean isComputer = type == 2 && currentPlayer == 2;
+
             view.displayMessage("Player " + currentPlayer + "'s turn");
-            int[] move = view.getPlayerMove();
+            int[] move = view.getPlayerMove(isComputer);
             if (model.isValidMove(move[0], move[1])) {
-                model.makeMove(move[0], move[1], currentPlayer);
+                    model.makeMove(move[0], move[1], currentPlayer);
+                    
+               
                 if (model.checkWin()) {
                     view.displayMessage("Player " + currentPlayer + " wins!");
                     break;
@@ -29,8 +34,10 @@ public class GameController {
             } else {
                 view.displayMessage("Invalid move, try again.");
             }
+            
         }
-    }
-}
+    }}
+    
+       
 
     
