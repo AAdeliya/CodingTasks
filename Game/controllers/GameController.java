@@ -18,10 +18,9 @@ public class GameController {
          while (true) {
             view.displayBoard(model.board);
             int currentPlayer = isPlayer1Turn ? 1 : 2;
-            boolean isComputer = type == 2 && currentPlayer == 2;
-
+            
             view.displayMessage("Player " + currentPlayer + "'s turn");
-            int[] move = view.getPlayerMove(isComputer);
+            int[] move = view.getPlayerMove(type);
             if (model.isValidMove(move[0], move[1])) {
                     model.makeMove(move[0], move[1], currentPlayer);
                     
