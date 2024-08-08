@@ -3,7 +3,7 @@ package Game.models;
 import java.util.Random;
 
 public class GameModel {
-    //private static final int[][] board = new int[3][3];
+  
     protected static final int BOARD_SIZE = 3; 
     public static final int[][] board = new int[BOARD_SIZE][BOARD_SIZE];
     
@@ -11,19 +11,9 @@ public class GameModel {
     private void initializeBoard() {
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
-                board[i][j] = 0;  // Explicitly set all positions to 0
+                board[i][j] = 0;  
             }
         }
-    }
-
-
-    public GameModel() {
-        initializeBoard();
-        // for (int i = 0; i < 3; i++) {
-        //     for (int j = 0; j < 3; j++) {
-        //         board[i][j] = 0;
-        //     }
-        // }
     }
 
     public boolean isValidMove(int row, int col) {
@@ -62,11 +52,11 @@ public class GameModel {
         for (int row = 0; row < 3; row++) {
             if (board[row][0] == 1 && board[row][1] == 0 && board[row][2] == 0)  { //100  //120
                 return new int[]{row, 1};
-            }else if(board[row][0] == 0 && board[row][1] == 1 && board[row][2] == 0){ //010   //210
+            } else if (board[row][0] == 0 && board[row][1] == 1 && board[row][2] == 0) { //010   //210
                 return new int[]{row, 0};
            // }else if(board[row][0] == 0 && board[row][1] == 0 && board[row][2] == 1){ //001    //021
-            }else{ 
-                return new int[]{row, 1};
+            } else { 
+                return new int[] {row, 1};
 
            }
                
@@ -75,12 +65,7 @@ public class GameModel {
       
     }
 
-
-
-
-
-    
-    private boolean checkHorizontal() {
+     private boolean checkHorizontal() {
         for (int row = 0; row < 3; row++) {
             if (board[row][0] == 1 && board[row][1] == board[row][1] && board[row][1] == board[row][2]) {
                 return true;
@@ -98,7 +83,7 @@ public class GameModel {
         
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
-                if(board[i][j] == 0){
+                if (board[i][j] == 0) {
                     return false;
                  
                 }

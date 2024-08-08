@@ -32,8 +32,7 @@ public class GameController {
                 isPlayer1Turn = !isPlayer1Turn;
             } else {
                 view.displayMessage("Invalid move, try again.");
-            }
-            if(model.isBoardFull()){
+            } if(model.isBoardFull()) {
                 view.displayMessage("The board is full! The game is over!");
                 break;
             }

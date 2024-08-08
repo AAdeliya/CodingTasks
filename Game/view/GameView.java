@@ -20,21 +20,21 @@ public class GameView {
     }
 
     public int[] getPlayerMove(int type) {
-        if(type != 1){  
+        if (type != 1) {  
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter row and column numbers (0-2):");
         int row = scanner.nextInt();
         int col = scanner.nextInt();
-        return new int[]{row, col};
+        return new int[] {row, col};
 
-        }else if(type == 2){
+        } else if (type == 2) {
         Random random = new Random();
         int row = random.nextInt(3);
         int col = random.nextInt(3);
         System.out.println("row" + row + "col" + col);
-        return new int[]{row, col};
+        return new int[] {row, col};
     
-        }else{
+        } else {
           
     
         Random random = new Random();
