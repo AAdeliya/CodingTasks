@@ -57,7 +57,7 @@ public class GameView {
         int typeOfGame = scanner.nextInt();
         return typeOfGame;
 
-
     }
+    
 }
     
