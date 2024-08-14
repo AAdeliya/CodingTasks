@@ -4,7 +4,7 @@ import Game.models.GameModel;
 import Game.view.GameView;
 
 public class GameController {
-     private GameModel model;
+    private GameModel model;
     private GameView view;
     private boolean isPlayer1Turn = true;
 
@@ -15,24 +15,22 @@ public class GameController {
 
     public void startGame() {
         int type = view.typeOfGame();
+        
          while (!model.checkWin() && !model.isBoardFull()) {
             view.displayBoard(GameModel.board);
             int currentPlayer = isPlayer1Turn ? 1 : 2;
-            
             view.displayMessage("Player " + currentPlayer + "'s turn");
             int[] move = view.getPlayerMove(type);
             if (model.isValidMove(move[0], move[1])) {
-                    model.makeMove(move[0], move[1], currentPlayer);
-                    
-               
-                if (model.checkWin()) {
+                model.makeMove(move[0], move[1], currentPlayer);
+            if (model.checkWin()) {
                     view.displayMessage("Player " + currentPlayer + " wins!");
                     break;
-                }
-                isPlayer1Turn = !isPlayer1Turn;
+            }
+            isPlayer1Turn = !isPlayer1Turn;
             } else {
                 view.displayMessage("Invalid move, try again.");
-            } if(model.isBoardFull()) {
+            } if (model.isBoardFull()) {
                 view.displayMessage("The board is full! The game is over!");
                 break;
             }

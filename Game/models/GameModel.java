@@ -8,6 +8,8 @@ public class GameModel {
     protected static final int EMPTY_SPACE = 0;
     private static final int[] NO_MOVE_FOUND = {-1, -1};
     public static final int[][] board = new int[BOARD_SIZE][BOARD_SIZE];
+    private static final int PLAYER_1 = 1;
+    private static final int PLAYER_2 = 2;
     
     
     private void initializeBoard() {
@@ -32,7 +34,6 @@ public class GameModel {
         return checkVertical() || checkHorizontal() || checkDiagonal();
     }
     
-
     private boolean checkVertical() {
         for (int col = 0; col < BOARD_SIZE; col++) {
             if (board[0][col] != 0 && board[0][col] == board[1][col] && board[1][col] == board[2][col]) {
@@ -47,8 +48,7 @@ public class GameModel {
                 return new int[]{row, 1};
             } else if (board[row][0] == EMPTY_SPACE && board[row][1] == 1 && board[row][2] == EMPTY_SPACE) { //010   //210
                 return new int[]{row, 0};
-           // } else if (board[row][0] == EMPTY_SPACE && board[row][1] == EMPTY_SPACE && board[row][2] == 1) { //001    //021
-            } else { 
+           } else {  //021
                 return new int[] {row, 1};
 
            }
@@ -70,6 +70,9 @@ public class GameModel {
     private boolean checkDiagonal() {
         return (board[0][0] != 0 && board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
                (board[0][2] != 0 && board[0][2] == board[1][1] && board[1][1] == board[2][0]);
+    }
+    private boolean isGameOver() {
+        return checkWin() || isBoardFull();
     }
     
     public boolean isBoardFull() {
