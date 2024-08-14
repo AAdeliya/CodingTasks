@@ -41,7 +41,7 @@ public class GameModel {
     
 
     private boolean checkVertical() {
-        for (int col = 0; col < 3; col++) {
+        for (int col = 0; col < BOARD_SIZE; col++) {
             if (board[0][col] != 0 && board[0][col] == board[1][col] && board[1][col] == board[2][col]) {
                 return true;
             }
@@ -49,7 +49,7 @@ public class GameModel {
         return false;
     }
     private int[] checkHorizontalByComputer(){
-        for (int row = 0; row < 3; row++) {
+        for (int row = 0; row < BOARD_SIZE; row++) {
             if (board[row][0] == 1 && board[row][1] == 0 && board[row][2] == 0)  { //100  //120
                 return new int[]{row, 1};
             } else if (board[row][0] == 0 && board[row][1] == 1 && board[row][2] == 0) { //010   //210
@@ -66,7 +66,7 @@ public class GameModel {
     }
 
      private boolean checkHorizontal() {
-        for (int row = 0; row < 3; row++) {
+        for (int row = 0; row < BOARD_SIZE; row++) {
             if (board[row][0] == 1 && board[row][1] == board[row][1] && board[row][1] == board[row][2]) {
                 return true;
             }
@@ -91,7 +91,7 @@ public class GameModel {
             }
             
         }
-        return true; //only return true if no empty spots were found 
+        return true; 
     }
 }
 
