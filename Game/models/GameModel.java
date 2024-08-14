@@ -5,6 +5,8 @@ import java.util.Random;
 public class GameModel {
   
     protected static final int BOARD_SIZE = 3; 
+    protected static final int EMPTY_SPACE = 0;
+    private static final int[] NO_MOVE_FOUND = {-1, -1};
     public static final int[][] board = new int[BOARD_SIZE][BOARD_SIZE];
     
     
@@ -17,7 +19,7 @@ public class GameModel {
     }
 
     public boolean isValidMove(int row, int col) {
-        return board[row][col] == 0;
+        return board[row][col] == EMPTY_SPACE;
     }
 
     public void makeMove(int row, int col, int player) {
@@ -25,17 +27,8 @@ public class GameModel {
             board[row][col] = player;
         }
     }
-    // public void makeMoveComputer(int player) {
-    //     Random random = new Random();
-    //     int row = random.nextInt(BOARD_SIZE);
-    //     int col = random.nextInt(BOARD_SIZE);
-    //     if (isValidMove(row, col)) {
-    //         board[row][col] = player;
-    //     }
-    // }
 
     public boolean checkWin() {
-        // Combine CheckVertical, CheckHorizontal, CheckDiagonal here
         return checkVertical() || checkHorizontal() || checkDiagonal();
     }
     
@@ -50,18 +43,18 @@ public class GameModel {
     }
     private int[] checkHorizontalByComputer(){
         for (int row = 0; row < BOARD_SIZE; row++) {
-            if (board[row][0] == 1 && board[row][1] == 0 && board[row][2] == 0)  { //100  //120
+            if (board[row][0] == 1 && board[row][1] == EMPTY_SPACE && board[row][2] == EMPTY_SPACE)  { //100  //120
                 return new int[]{row, 1};
-            } else if (board[row][0] == 0 && board[row][1] == 1 && board[row][2] == 0) { //010   //210
+            } else if (board[row][0] == EMPTY_SPACE && board[row][1] == 1 && board[row][2] == EMPTY_SPACE) { //010   //210
                 return new int[]{row, 0};
-           // }else if(board[row][0] == 0 && board[row][1] == 0 && board[row][2] == 1){ //001    //021
+           // } else if (board[row][0] == EMPTY_SPACE && board[row][1] == EMPTY_SPACE && board[row][2] == 1) { //001    //021
             } else { 
                 return new int[] {row, 1};
 
            }
                
         }
-        return null;
+        return NO_MOVE_FOUND;
       
     }
 

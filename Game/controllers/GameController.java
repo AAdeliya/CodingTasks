@@ -15,8 +15,8 @@ public class GameController {
 
     public void startGame() {
         int type = view.typeOfGame();
-         while (true) {
-            view.displayBoard(model.board);
+         while (!model.checkWin() && !model.isBoardFull()) {
+            view.displayBoard(GameModel.board);
             int currentPlayer = isPlayer1Turn ? 1 : 2;
             
             view.displayMessage("Player " + currentPlayer + "'s turn");
@@ -38,7 +38,8 @@ public class GameController {
             }
             
         }
-    }}
+    }
+}
     
        
 
