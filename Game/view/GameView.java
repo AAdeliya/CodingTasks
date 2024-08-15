@@ -25,14 +25,14 @@ public class GameView {
     }
 
     public int[] getPlayerMove(int type) {
-        if (type != PLAYER_1) {  
+        if (type == 1) {  //human 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter row and column numbers (0-2):");
         int row = scanner.nextInt();
         int col = scanner.nextInt();
         return new int[] {row, col};
 
-        } else if (type == PLAYER_2) {
+        } else if (type == 2) {
         Random random = new Random();
         int row = random.nextInt(3);
         int col = random.nextInt(3);

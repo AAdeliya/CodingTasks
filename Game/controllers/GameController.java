@@ -20,6 +20,7 @@ public class GameController {
             view.displayBoard(GameModel.board);
             int currentPlayer = isPlayer1Turn ? 1 : 2;
             view.displayMessage("Player " + currentPlayer + "'s turn");
+            
             int[] move = view.getPlayerMove(type);
             if (model.isValidMove(move[0], move[1])) {
                 model.makeMove(move[0], move[1], currentPlayer);
@@ -28,6 +29,7 @@ public class GameController {
                     break;
             }
             isPlayer1Turn = !isPlayer1Turn;
+        
             } else {
                 view.displayMessage("Invalid move, try again.");
             } if (model.isBoardFull()) {
