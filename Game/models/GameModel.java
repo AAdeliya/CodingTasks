@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class GameModel {
   
-    protected static final int BOARD_SIZE = 3; 
+    public static final int BOARD_SIZE = 3; 
     protected static final int EMPTY_SPACE = 0;
     private static final int[] NO_MOVE_FOUND = {-1, -1}; 
     protected static final int FIRST_INDEX = 0;
