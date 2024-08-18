@@ -6,7 +6,9 @@ public class GameModel {
   
     protected static final int BOARD_SIZE = 3; 
     protected static final int EMPTY_SPACE = 0;
-    private static final int[] NO_MOVE_FOUND = {-1, -1};
+    private static final int[] NO_MOVE_FOUND = {-1, -1}; 
+    protected static final int FIRST_INDEX = 0;
+    protected static final int LAST_INDEX = BOARD_SIZE - 1;
     public static final int[][] board = new int[BOARD_SIZE][BOARD_SIZE];
 
     
@@ -36,14 +38,61 @@ public class GameModel {
         return checkVertical() || checkHorizontal() || checkDiagonal();
     }
     
-    private boolean checkVertical() {
-        for (int col = 0; col < BOARD_SIZE; col++) {
-            if (board[0][col] != 0 && board[0][col] == board[1][col] && board[1][col] == board[2][col]) {
-                return true;
+    // private boolean checkVertical() {
+    //     for (int col = 0; col < BOARD_SIZE; col++) {
+    //         if (board[0][col] != 0 && board[0][col] == board[1][col] && board[1][col] == board[2][col]) {
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+
+    public boolean checkVertical() {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            int top = 0;
+            int bottom  = 1; 
+            
+            if (board[top][i] == EMPTY_SPACE) {
+                continue;
+               }
+
+               boolean win= true;
+    
+            while (bottom < BOARD_SIZE) {
+            if (board[top][i] != board[bottom][i]) {
+                    win = false;
+                    break;
+                }
+                
+                top++;
+                bottom++;   
+            }
+    
+            if (win) {
+                return true;  
             }
         }
-        return false;
+    
+        return false;  
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private int[] checkHorizontalByComputer(){
         for (int row = 0; row < BOARD_SIZE; row++) {
             if (board[row][0] == 1 && board[row][1] == EMPTY_SPACE && board[row][2] == EMPTY_SPACE)  { //100  //120
@@ -62,45 +111,94 @@ public class GameModel {
 
     //  private boolean checkHorizontal() {
     //     for (int row = 0; row < BOARD_SIZE; row++) {
-    //         //if (board[row][0] != 0 && board[row][1] == board[row][1] && board[row][1] == board[row][2]) {
-    //             if (board[0][row] != 0 && board[0][row] == board[1][row] && board[1][row] == board[2][row]) {
+    //         if (board[row][0] != 0 && board[row][1] == board[row][1] && board[row][1] == board[row][2]) {
+    //             //if (board[0][row] != 0 && board[0][row] == board[1][row] && board[1][row] == board[2][row]) {
     //             return true;
     //         }
     //     }
     //     return false;
     // }
 
-    // public boolean checkHorizontal() {
-    //     for (int i = 0; i < BOARD_SIZE; i++) {
-    //         //System.out.println("Checking row " + i);
-    //         boolean win= true;
+    public boolean checkHorizontal() {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            int left = 0;
+            int right = 1; 
+            
+            if (board[i][left] == EMPTY_SPACE) {
+                continue;
+               }
+
+               boolean win= true;
     
-    //         int left = 0;
-    //         int right = 1;
-    
-    //         while (right < BOARD_SIZE) {
-    //            // System.out.println("Comparing col " + left + " against col " + right);
-    //             if (board[i][left] != board[i][right] && board[i][left] != EMPTY_SPACE) {
-    //                 win = false;
-    //                 break;
-    //             }
+            while (right < BOARD_SIZE) {
+            if (board[i][left] != board[i][right]) {
+                    win = false;
+                    break;
+                }
                 
-    //             left++;
-    //             right++;
-    //         }
+                left++;
+                right++;   
+            }
     
-    //         if (win) {
-    //             return true;  
-    //         }
-    //     }
+            if (win) {
+                return true;  
+            }
+        }
     
-    //     return false;  
-    // }
-//doen't work properly 
-    private boolean checkDiagonal() {
-        return (board[0][0] != 0 && board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
-               (board[0][2] != 0 && board[0][2] == board[1][1] && board[1][1] == board[2][0]);
+        return false;  
     }
+//doen't work properly 
+
+
+
+
+    // private boolean checkDiagonal() {
+    //     return (board[0][0] != 0 && board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
+    //            (board[0][2] != 0 && board[0][2] == board[1][1] && board[1][1] == board[2][0]);
+    // }
+
+  
+    
+    private boolean checkDiagonal() {
+        // Check the primary diagonal (top-left to bottom-right)
+        int firstPrimaryDiagonalValue = board[0][0];
+        boolean primaryDiagonalWin = firstPrimaryDiagonalValue != EMPTY_SPACE;
+    
+        for (int i = 1; i < BOARD_SIZE; i++) {
+            if (board[i][i] != firstPrimaryDiagonalValue) {
+                primaryDiagonalWin = false;
+                break;
+            }
+        }
+    
+        if (primaryDiagonalWin) {
+            return true;
+        }
+    
+        // Check the secondary diagonal (top-right to bottom-left)
+        int firstSecondaryDiagonalValue = board[0][BOARD_SIZE - 1];
+        boolean secondaryDiagonalWin = firstSecondaryDiagonalValue != EMPTY_SPACE;
+    
+        for (int i = 1; i < BOARD_SIZE; i++) {
+            if (board[i][BOARD_SIZE - 1 - i] != firstSecondaryDiagonalValue) {
+                secondaryDiagonalWin = false;
+                break;
+            }
+        }
+    
+        return secondaryDiagonalWin;
+    }
+
+
+
+
+
+
+
+
+
+
+
     // private boolean isGameOver() {
     //     return checkWin() || isBoardFull();
     // }
