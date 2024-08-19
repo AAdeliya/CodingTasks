@@ -67,24 +67,7 @@ public class GameModel {
         return false;  
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private int[] checkHorizontalByComputer(){
+     private int[] checkHorizontalByComputer() {
         for (int row = 0; row < BOARD_SIZE; row++) {
             if (board[row][0] == 1 && board[row][1] == EMPTY_SPACE && board[row][2] == EMPTY_SPACE)  { //100  //120
                 return new int[]{row, 1};
@@ -99,16 +82,6 @@ public class GameModel {
         return NO_MOVE_FOUND;
       
     }
-
-    //  private boolean checkHorizontal() {
-    //     for (int row = 0; row < BOARD_SIZE; row++) {
-    //         if (board[row][0] != 0 && board[row][1] == board[row][1] && board[row][1] == board[row][2]) {
-    //             //if (board[0][row] != 0 && board[0][row] == board[1][row] && board[1][row] == board[2][row]) {
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
 
     public boolean checkHorizontal() {
         for (int i = 0; i < BOARD_SIZE; i++) {
@@ -138,20 +111,10 @@ public class GameModel {
     
         return false;  
     }
-//doen't work properly 
 
-
-
-
-    // private boolean checkDiagonal() {
-    //     return (board[0][0] != 0 && board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
-    //            (board[0][2] != 0 && board[0][2] == board[1][1] && board[1][1] == board[2][0]);
-    // }
-
-  
     
     private boolean checkDiagonal() {
-        // Check the primary diagonal (top-left to bottom-right)
+        // top-left to bottom-right
         int firstPrimaryDiagonalValue = board[0][0];
         boolean primaryDiagonalWin = firstPrimaryDiagonalValue != EMPTY_SPACE;
     
@@ -166,7 +129,7 @@ public class GameModel {
             return true;
         }
     
-        // Check the secondary diagonal (top-right to bottom-left)
+        //top-right to bottom-left
         int firstSecondaryDiagonalValue = board[0][BOARD_SIZE - 1];
         boolean secondaryDiagonalWin = firstSecondaryDiagonalValue != EMPTY_SPACE;
     
@@ -180,20 +143,6 @@ public class GameModel {
         return secondaryDiagonalWin;
     }
 
-
-
-
-
-
-
-
-
-
-
-    // private boolean isGameOver() {
-    //     return checkWin() || isBoardFull();
-    // }
-    
     public boolean isBoardFull() {
         
         for (int i = 0; i < BOARD_SIZE; i++) {

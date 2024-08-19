@@ -30,7 +30,7 @@ public class GameView {
             System.out.println("The value is out of bound. Please provide correct value for "  + message + " the board size.");
             value = scanner.nextInt();
             }
-            
+
         return value;
 
     }
@@ -45,8 +45,7 @@ public class GameView {
       
         int col = scanner.nextInt();
         validateValue(col, "col");
-    
-
+        System.out.println("row" + row + "col" + col);
         return new int[] {row, col};
         
 
@@ -63,7 +62,10 @@ public class GameView {
         } else {
         Random random = new Random();
         int row = random.nextInt(3);
+        validateValue(row, "row");
+
         int col = random.nextInt(3);
+        validateValue(col, "col");
         System.out.println("row" + row + "col" + col);
         return new int[]{row, col};
     
