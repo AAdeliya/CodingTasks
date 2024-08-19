@@ -30,6 +30,7 @@ public class GameView {
             System.out.println("The value is out of bound. Please provide correct value for "  + message + " the board size.");
             value = scanner.nextInt();
             }
+            
         return value;
 
     }

@@ -37,15 +37,6 @@ public class GameModel {
         System.out.println("Check Diagnol" + checkDiagonal());
         return checkVertical() || checkHorizontal() || checkDiagonal();
     }
-    
-    // private boolean checkVertical() {
-    //     for (int col = 0; col < BOARD_SIZE; col++) {
-    //         if (board[0][col] != 0 && board[0][col] == board[1][col] && board[1][col] == board[2][col]) {
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
 
     public boolean checkVertical() {
         for (int i = 0; i < BOARD_SIZE; i++) {
