@@ -12,7 +12,6 @@ public class GameModel {
     public static final int[][] board = new int[BOARD_SIZE][BOARD_SIZE];
 
     
-    
     private void initializeBoard() {
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
