@@ -17,7 +17,7 @@ public class GameModel {
             for (int j = 0; j < BOARD_SIZE; j++) {
                 board[i][j] = 0;  
             }
-        }
+        }//
     }
 
     public boolean isValidMove(int row, int col) {
