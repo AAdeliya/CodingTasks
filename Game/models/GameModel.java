@@ -22,7 +22,7 @@ public class GameModel {
         }
     }
 
-    public boolean isValidMove(int row, int col) {
+    public static boolean isValidMove(int row, int col) {
         return board[row][col] == 0;
     }
 
@@ -33,9 +33,9 @@ public class GameModel {
     }
 
     public boolean checkWin() {
-        System.out.println("Check Vertical " + checkVertical());
-        System.out.println("CheckHorizonal " + checkHorizontal());
-        System.out.println("Check Diagnol" + checkDiagonal());
+        // System.out.println("Check Vertical " + checkVertical());
+        // System.out.println("Check Horizonal " + checkHorizontal());
+        // System.out.println("Check Diagnol " + checkDiagonal());
         return checkVertical() || checkHorizontal() || checkDiagonal();
     }
 
@@ -68,7 +68,7 @@ public class GameModel {
         return false;  
     }
 
-     private int[] checkHorizontalByComputer() {
+     public static int[] checkHorizontalByComputer() {
         for (int row = 0; row < BOARD_SIZE; row++) {
             if (board[row][0] == 1 && board[row][1] == EMPTY_SPACE && board[row][2] == EMPTY_SPACE)  { //100  //120
                 return new int[]{row, 1};

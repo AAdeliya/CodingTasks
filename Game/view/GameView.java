@@ -3,21 +3,22 @@ package Game.view;
 
 import java.util.Random;
 import java.util.Scanner;
+
+import Game.controllers.GameController;
 import Game.models.GameModel;
 
 
 public class GameView {
-
-
+    
     public static final int PLAYER_1 = 1;
     public static final int PLAYER_2 = 2;
-    
     
     public void displayBoard(int[][] board) {
         for (int[] row : board) {
             for (int cell : row) {
                 System.out.print(cell + " ");
             }
+
             System.out.println();
         }
     }
@@ -36,41 +37,93 @@ public class GameView {
     }
     
     public int[] getPlayerMove(int type) {
-      
-        if (type == 1) {  //human 
         Scanner scanner = new Scanner(System.in);
+
+    if (type == 1 || (type == 2 && GameController.isPlayer1Turn)) {  // Human vs Human or Human's turn in Human vs Computer
         System.out.println("Enter row and column numbers (0-2):");
         int row = scanner.nextInt();
-        validateValue(row, "row");
-      
+        row = validateValue(row, "row");
+
         int col = scanner.nextInt();
-        validateValue(col, "col");
-        System.out.println("row" + row + "col" + col);
+        col = validateValue(col, "col");
+        System.out.println("row" + row + " col" + col);
         return new int[] {row, col};
-        
 
-        } else if (type == 2) {
+    } else if (type == 2 && !GameController.isPlayer1Turn) {  // Computer's turn in Human vs Computer
         Random random = new Random();
-        int row = random.nextInt(3);
-        validateValue(row, "row");
-
-        int col = random.nextInt(3);
-        validateValue(col, "col");
-        System.out.println("row" + row + "col" + col);
+        int row, col;
+        do {
+            row = random.nextInt(GameModel.BOARD_SIZE);
+            col = random.nextInt(GameModel.BOARD_SIZE);
+        } while (!GameModel.isValidMove(row, col));
+        System.out.println("Computer chose row " + row + " col " + col);
         return new int[] {row, col};
-        
+
+    } else {  // Smarter Computer's turn in Human vs Smarter Computer
+        int[] move = GameModel.checkHorizontalByComputer();
+        if (move[0] == -1 && move[1] == -1) {
+            Random random = new Random();
+            int row, col;
+            do {
+                row = random.nextInt(GameModel.BOARD_SIZE);
+                col = random.nextInt(GameModel.BOARD_SIZE);
+            } while (!GameModel.isValidMove(row, col));
+            System.out.println("Computer chose row " + row + " col " + col);
+            return new int[]{row, col};
         } else {
-        Random random = new Random();
-        int row = random.nextInt(3);
-        validateValue(row, "row");
-
-        int col = random.nextInt(3);
-        validateValue(col, "col");
-        System.out.println("row" + row + "col" + col);
-        return new int[]{row, col};
-    
+            System.out.println("Smarter Computer chose row " + move[0] + " col " + move[1]);
+            return move;
+        }
     }
- }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+//         if (type == 1) {  //human 
+//         Scanner scanner = new Scanner(System.in);
+//         System.out.println("Enter row and column numbers (0-2):");
+//         int row = scanner.nextInt();
+//         validateValue(row, "row");
+      
+//         int col = scanner.nextInt();
+//         validateValue(col, "col");
+//         System.out.println("row" + row + "col" + col);
+//         return new int[] {row, col};
+        
+
+//         } else if (type == 2) {
+//         Random random = new Random();
+//         int row = random.nextInt(3);
+//         validateValue(row, "row");
+
+//         int col = random.nextInt(3);
+//         validateValue(col, "col");
+//         System.out.println("row" + row + "col" + col);
+//         return new int[] {row, col};
+        
+//         } else {
+//         Random random = new Random();
+//         int row = random.nextInt(3);
+//         validateValue(row, "row");
+
+//         int col = random.nextInt(3);
+//         validateValue(col, "col");
+//         System.out.println("row" + row + "col" + col);
+//         return new int[]{row, col};
+    
+//     }
+//  }
  
  public int typeOfGame() {
         Scanner scanner = new Scanner(System.in);
@@ -81,10 +134,10 @@ public class GameView {
         int typeOfGame = scanner.nextInt();
 
         while (typeOfGame != 1 && typeOfGame != 2 && typeOfGame != 3) {
-          
-           System.out.println("This type of game is invalid. Please select correct type of game: 1, 2, 3");
-           typeOfGame = scanner.nextInt();
+            System.out.println("This type of game is invalid. Please select correct type of game: 1, 2, 3");
+            typeOfGame = scanner.nextInt();
          }
+         
           return typeOfGame;
         
     }
