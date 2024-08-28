@@ -1,6 +1,8 @@
 package Game.models;
 
+
 import java.util.Random;
+
 
 public class GameModel {
   
@@ -17,7 +19,7 @@ public class GameModel {
             for (int j = 0; j < BOARD_SIZE; j++) {
                 board[i][j] = 0;  
             }
-        }//
+        }
     }
 
     public boolean isValidMove(int row, int col) {
@@ -110,7 +112,6 @@ public class GameModel {
     
         return false;  
     }
-
     
     private boolean checkDiagonal() {
         // top-left to bottom-right

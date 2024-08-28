@@ -1,12 +1,17 @@
 package Game.controllers;
 
+
 import Game.models.GameModel;
 import Game.view.GameView;
 
+
 public class GameController {
+    
     private GameModel model;
     private GameView view;
     private boolean isPlayer1Turn = true;
+
+
 
     public GameController(GameModel model, GameView view) {
         this.model = model;

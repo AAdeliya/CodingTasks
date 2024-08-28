@@ -1,6 +1,5 @@
-
 import java.util.Scanner;
-//balance, deposit, and withdraw money
+
 
 public class ATMInterface {
     private static double balance = 0;
@@ -25,8 +24,6 @@ public class ATMInterface {
             //withdraw method
             System.out.println("The balance is " + withdraw(amount));       
             
-
-    
           } else if (enterchoice == 3) {
             System.out.println("Enter an amount to deposit ");
             amount = input.nextDouble();
@@ -34,23 +31,22 @@ public class ATMInterface {
             System.out.println("The balance is " + deposit(amount));       
            
           } 
+
         }
+        
     }
-            
-        public static double balanceCheck(){
+    
+    public static double balanceCheck() {
             return balance;
 
         }
-        public static double deposit(double amount){
+        
+    public static double deposit(double amount) {
             return balance+=amount;
-            
-            
-            
         }
-        public static double withdraw(double amount){
-            return balance-=amount;
-            
 
+    public static double withdraw(double amount) {
+            return balance-=amount;
         }
 
 

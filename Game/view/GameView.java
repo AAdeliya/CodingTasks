@@ -1,16 +1,18 @@
 package Game.view;
 
+
 import java.util.Random;
 import java.util.Scanner;
-
 import Game.models.GameModel;
 
 
-
 public class GameView {
+
+
     public static final int PLAYER_1 = 1;
     public static final int PLAYER_2 = 2;
-
+    
+    
     public void displayBoard(int[][] board) {
         for (int[] row : board) {
             for (int cell : row) {
@@ -19,22 +21,20 @@ public class GameView {
             System.out.println();
         }
     }
-
+    
     public void displayMessage(String message) {
         System.out.println(message);
     }
-
+    
     public int validateValue(int value, String message) {
         Scanner scanner = new Scanner(System.in);
         while (!(value >= 0 && value < GameModel.BOARD_SIZE)) {
             System.out.println("The value is out of bound. Please provide correct value for "  + message + " the board size.");
             value = scanner.nextInt();
-            }
-
+        }
         return value;
-
     }
-
+    
     public int[] getPlayerMove(int type) {
       
         if (type == 1) {  //human 
@@ -71,7 +71,8 @@ public class GameView {
     
     }
  }
-    public int typeOfGame() {
+ 
+ public int typeOfGame() {
         Scanner scanner = new Scanner(System.in);
         displayMessage("Please select type of game: ");
         displayMessage("1.Human VS Human");
@@ -83,10 +84,9 @@ public class GameView {
           
            System.out.println("This type of game is invalid. Please select correct type of game: 1, 2, 3");
            typeOfGame = scanner.nextInt();
-
-        }
+         }
           return typeOfGame;
-
+        
     }
     
 }
