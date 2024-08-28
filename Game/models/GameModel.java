@@ -67,21 +67,18 @@ public class GameModel {
     
         return false;  
     }
-
-     public static int[] checkHorizontalByComputer() {
+    public static int[] checkHorizontalByComputer() {
         for (int row = 0; row < BOARD_SIZE; row++) {
-            if (board[row][0] == 1 && board[row][1] == EMPTY_SPACE && board[row][2] == EMPTY_SPACE)  { //100  //120
-                return new int[]{row, 1};
-            } else if (board[row][0] == EMPTY_SPACE && board[row][1] == 1 && board[row][2] == EMPTY_SPACE) { //010   //210
-                return new int[]{row, 0};
-           } else {  //021
-                return new int[] {row, 1};
-
-           }
-               
+            // Check if a winning or blocking move can be made
+            if (board[row][0] == 1 && board[row][1] == EMPTY_SPACE && board[row][2] == EMPTY_SPACE) {
+                return new int[]{row, 1};  // Play at (row, 1)
+            } else if (board[row][0] == EMPTY_SPACE && board[row][1] == 1 && board[row][2] == EMPTY_SPACE) {
+                return new int[]{row, 0};  // Play at (row, 0)
+            } else if (board[row][0] == EMPTY_SPACE && board[row][1] == EMPTY_SPACE && board[row][2] == 1) {
+                return new int[]{row, 2};  // Play at (row, 2)
+            }
         }
-        return NO_MOVE_FOUND;
-      
+        return NO_MOVE_FOUND;  // Return {-1, -1} if no move is found
     }
 
     public boolean checkHorizontal() {

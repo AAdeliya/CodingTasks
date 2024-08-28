@@ -27,7 +27,7 @@ public class GameView {
         System.out.println(message);
     }
     
-    public int validateValue(int value, String message) {
+    public static int validateValue(int value, String message) {
         Scanner scanner = new Scanner(System.in);
         while (!(value >= 0 && value < GameModel.BOARD_SIZE)) {
             System.out.println("The value is out of bound. Please provide correct value for "  + message + " the board size.");
@@ -36,7 +36,7 @@ public class GameView {
         return value;
     }
     
-    public int[] getPlayerMove(int type) {
+    public static int[] getPlayerMove(int type) {
         Scanner scanner = new Scanner(System.in);
 
     if (type == 1 || (type == 2 && GameController.isPlayer1Turn)) {  // Human vs Human or Human's turn in Human vs Computer
