@@ -9,9 +9,8 @@ import Game.models.GameModel;
 
 
 public class GameView {
-    
-    public static final int PLAYER_1 = 1;
-    public static final int PLAYER_2 = 2;
+
+    public static final int NO_SMART_MOVE = -1;
     
     public void displayBoard(int[][] board) {
         for (int[] row : board) {
@@ -40,7 +39,7 @@ public class GameView {
         Scanner scanner = new Scanner(System.in);
 
     if (type == 1 || (type == 2 && GameController.isPlayer1Turn)) {  // Human vs Human or Human's turn in Human vs Computer
-        System.out.println("Enter row and column numbers (0-2):");
+        System.out.println("Enter row and column numbers from 0 to " + GameModel.BOARD_SIZE);
         int row = scanner.nextInt();
         row = validateValue(row, "row");
 
@@ -61,16 +60,20 @@ public class GameView {
 
     } else {  // Smarter Computer's turn in Human vs Smarter Computer
         int[] move = GameModel.checkHorizontalByComputer();
-        if (move[0] == -1 && move[1] == -1) {
+        
+        if (move[0] == NO_SMART_MOVE && move[1] == NO_SMART_MOVE) { //move[0] row move[1] - column if both -1 it means no valid move was found
             Random random = new Random();
             int row, col;
+
             do {
                 row = random.nextInt(GameModel.BOARD_SIZE);
                 col = random.nextInt(GameModel.BOARD_SIZE);
+
             } while (!GameModel.isValidMove(row, col));
             System.out.println("Computer chose row " + row + " col " + col);
             return new int[]{row, col};
-        } else {
+
+        } else { //strategic move was found 
             System.out.println("Smarter Computer chose row " + move[0] + " col " + move[1]);
             return move;
         }

@@ -67,18 +67,42 @@ public class GameModel {
     
         return false;  
     }
+
     public static int[] checkHorizontalByComputer() {
         for (int row = 0; row < BOARD_SIZE; row++) {
-            // Check if a winning or blocking move can be made
-            if (board[row][0] == 1 && board[row][1] == EMPTY_SPACE && board[row][2] == EMPTY_SPACE) {
-                return new int[]{row, 1};  // Play at (row, 1)
-            } else if (board[row][0] == EMPTY_SPACE && board[row][1] == 1 && board[row][2] == EMPTY_SPACE) {
-                return new int[]{row, 0};  // Play at (row, 0)
-            } else if (board[row][0] == EMPTY_SPACE && board[row][1] == EMPTY_SPACE && board[row][2] == 1) {
-                return new int[]{row, 2};  // Play at (row, 2)
+
+            int left = 0;
+            int right = 1;
+            int playerCount = 0;
+            int emptyCount = 0;
+            int emptyCol = -1;
+    
+            while (right < BOARD_SIZE) {
+                if (board[row][left] == 1) {
+                    playerCount++;
+                } else if (board[row][left] == EMPTY_SPACE) {
+                    emptyCount++;
+                    emptyCol = left;  // Track the column of the empty space
+                }
+    
+                if (board[row][right] == 1) {
+                    playerCount++;
+                } else if (board[row][right] == EMPTY_SPACE) {
+                    emptyCount++;
+                    emptyCol = right;  // Track the column of the empty space
+                }
+    
+                left++;
+                right++;
+            }
+    
+            // If there are exactly two player markers and one empty space in a row, return that move
+            if (playerCount == BOARD_SIZE - 1 && emptyCount == 1) {
+                return new int[]{row, emptyCol};
             }
         }
-        return NO_MOVE_FOUND;  // Return {-1, -1} if no move is found
+    
+        return NO_MOVE_FOUND;
     }
 
     public boolean checkHorizontal() {
