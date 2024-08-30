@@ -102,7 +102,7 @@ public class GameModel {
             }
         }
     
-        return NO_MOVE_FOUND; //
+        return NO_MOVE_FOUND; 
     }
 
     public boolean checkHorizontal() {
