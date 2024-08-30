@@ -80,54 +80,6 @@ public class GameView {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-      
-//         if (type == 1) {  //human 
-//         Scanner scanner = new Scanner(System.in);
-//         System.out.println("Enter row and column numbers (0-2):");
-//         int row = scanner.nextInt();
-//         validateValue(row, "row");
-      
-//         int col = scanner.nextInt();
-//         validateValue(col, "col");
-//         System.out.println("row" + row + "col" + col);
-//         return new int[] {row, col};
-        
-
-//         } else if (type == 2) {
-//         Random random = new Random();
-//         int row = random.nextInt(3);
-//         validateValue(row, "row");
-
-//         int col = random.nextInt(3);
-//         validateValue(col, "col");
-//         System.out.println("row" + row + "col" + col);
-//         return new int[] {row, col};
-        
-//         } else {
-//         Random random = new Random();
-//         int row = random.nextInt(3);
-//         validateValue(row, "row");
-
-//         int col = random.nextInt(3);
-//         validateValue(col, "col");
-//         System.out.println("row" + row + "col" + col);
-//         return new int[]{row, col};
-    
-//     }
-//  }
- 
  public int typeOfGame() {
         Scanner scanner = new Scanner(System.in);
         displayMessage("Please select type of game: ");

@@ -33,9 +33,6 @@ public class GameModel {
     }
 
     public boolean checkWin() {
-        // System.out.println("Check Vertical " + checkVertical());
-        // System.out.println("Check Horizonal " + checkHorizontal());
-        // System.out.println("Check Diagnol " + checkDiagonal());
         return checkVertical() || checkHorizontal() || checkDiagonal();
     }
 

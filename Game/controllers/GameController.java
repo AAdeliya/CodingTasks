@@ -42,43 +42,6 @@ public class GameController {
                     return;
                 }
             }
-            
-
-
-
-
-
-
-
-             // Human vs Human
-            //  if (type == 1) {
-            //     // Get move from player (human)
-            //     move = view.getPlayerMove(type);
-            // } 
-            // // Human vs Computer
-            // else if (type == 2) {
-            //     if (currentPlayer == 1) {
-            //         // Get move from player (human)
-            //         move = view.getPlayerMove(type);
-            //     } else {
-            //         // Get move from computer
-            //         move = getComputerMove();
-            //     }
-            // } 
-            // // Human vs Smarter Computer
-            // else if (type == 3) {
-            //     if (currentPlayer == 1) {
-            //         // Get move from player (human)
-            //         move = view.getPlayerMove(type);
-            //     } else {
-            //         // Get smarter move from computer
-            //         move = getSmarterComputerMove();
-            //     }
-            // } else {
-            //     // Default case if type is not recognized
-            //     view.displayMessage("Invalid game type selected.");
-            //     return;
-            // }
 
             // Validate and make the move
             if (model.isValidMove(move[0], move[1])) {
