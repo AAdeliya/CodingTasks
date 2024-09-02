@@ -2,6 +2,7 @@ package Game.controllers;
 
 
 import java.util.Random;
+import java.util.Scanner;
 
 import Game.models.GameModel;
 import Game.view.GameView;
@@ -12,6 +13,7 @@ public class GameController {
     private GameModel model;
     private GameView view;
     public static boolean isPlayer1Turn = true;
+    public static final int NO_SMART_MOVE = -1;
 
 
     public GameController(GameModel model, GameView view) {
@@ -29,7 +31,7 @@ public class GameController {
 
             int[] move;      
             if (type == 1 || (type > 1 && currentPlayer == 1)) {
-                move = GameView.getPlayerMove(currentPlayer);
+                move = getPlayerMove(currentPlayer);
 
             } else {
                 // Computer's turn
@@ -85,6 +87,50 @@ public class GameController {
         }
         return move;
     }
+    public static int[] getPlayerMove(int type) {
+        Scanner scanner = new Scanner(System.in);
+
+    if (type == 1 || (type == 2 && GameController.isPlayer1Turn)) {  // Human vs Human or Human's turn in Human vs Computer
+        System.out.println("Enter row and column numbers from 0 to " + GameModel.BOARD_SIZE);
+        int row = scanner.nextInt();
+        row = GameModel.validateValue(row, "row");
+
+        int col = scanner.nextInt();
+        col = GameModel.validateValue(col, "col");
+        System.out.println("row" + row + " col" + col);
+        return new int[] {row, col};
+
+    } else if (type == 2 && !GameController.isPlayer1Turn) {  // Computer's turn in Human vs Computer
+        Random random = new Random();
+        int row, col;
+        do {
+            row = random.nextInt(GameModel.BOARD_SIZE);
+            col = random.nextInt(GameModel.BOARD_SIZE);
+        } while (!GameModel.isValidMove(row, col));
+        System.out.println("Computer chose row " + row + " col " + col);
+        return new int[] {row, col};
+
+    } else {  // Smarter Computer's turn in Human vs Smarter Computer
+        int[] move = GameModel.checkHorizontalByComputer();
+        
+        if (move[0] == NO_SMART_MOVE && move[1] == NO_SMART_MOVE) { //move[0] row move[1] - column if both -1 it means no valid move was found
+            Random random = new Random();
+            int row, col;
+
+            do {
+                row = random.nextInt(GameModel.BOARD_SIZE);
+                col = random.nextInt(GameModel.BOARD_SIZE);
+
+            } while (!GameModel.isValidMove(row, col));
+            System.out.println("Computer chose row " + row + " col " + col);
+            return new int[]{row, col};
+
+        } else { //strategic move was found 
+            System.out.println("Smarter Computer chose row " + move[0] + " col " + move[1]);
+            return move;
+        }
+    }
+}
 }
 
 

@@ -2,6 +2,7 @@ package Game.models;
 
 
 import java.util.Random;
+import java.util.Scanner;
 
 
 public class GameModel {
@@ -13,17 +14,18 @@ public class GameModel {
     protected static final int LAST_INDEX = BOARD_SIZE - 1;
     public static final int[][] board = new int[BOARD_SIZE][BOARD_SIZE];
 
-    
-    private void initializeBoard() {
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            for (int j = 0; j < BOARD_SIZE; j++) {
-                board[i][j] = 0;  
-            }
-        }
-    }
 
     public static boolean isValidMove(int row, int col) {
         return board[row][col] == 0;
+    }
+    
+    public static int validateValue(int value, String message) {
+        Scanner scanner = new Scanner(System.in);
+        while (!(value >= 0 && value < GameModel.BOARD_SIZE)) {
+            System.out.println("The value is out of bound. Please provide correct value for "  + message + " the board size.");
+            value = scanner.nextInt();
+        }
+        return value;
     }
 
     public void makeMove(int row, int col, int player) {
