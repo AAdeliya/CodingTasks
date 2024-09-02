@@ -72,21 +72,21 @@ public class GameModel {
             int left = 0;
             int right = 1;
             int playerCount = 0;
-            int emptyCount = 0;
+            int emptyRow = 0;
             int emptyCol = -1;
     
             while (right < BOARD_SIZE) {
                 if (board[row][left] == 1) {
                     playerCount++;
                 } else if (board[row][left] == EMPTY_SPACE) {
-                    emptyCount++;
+                    emptyRow++;
                     emptyCol = left;  // Track the column of the empty space
                 }
     
                 if (board[row][right] == 1) {
                     playerCount++;
                 } else if (board[row][right] == EMPTY_SPACE) {
-                    emptyCount++;
+                    emptyRow++;
                     emptyCol = right;  // Track the column of the empty space
                 }
     
@@ -94,8 +94,7 @@ public class GameModel {
                 right++;
             }
     
-            // If there are exactly two player markers and one empty space in a row, return that move
-            if (playerCount == BOARD_SIZE - 1 && emptyCount == 1) {
+            if (playerCount == BOARD_SIZE - 1 && emptyRow == 1) {
                 return new int[]{row, emptyCol};
             }
         }

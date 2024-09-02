@@ -68,25 +68,23 @@ public class GameController {
     }
 
     private int[] getComputerMove() {
-        // Random move logic for the computer
         Random random = new Random();
         int row, col;
         do {
             row = random.nextInt(GameModel.BOARD_SIZE);
             col = random.nextInt(GameModel.BOARD_SIZE);
-        } while (!model.isValidMove(row, col));
-
-        return new int[]{row, col};
+        } while (!GameModel.isValidMove(row, col));
+          return new int[]{row, col};
     }
 
     private int[] getSmarterComputerMove() {
-        // Smarter move logic for the computer (can be more complex based on game strategy)
-        int[] move = model.checkHorizontalByComputer();
-        if (move[0] == -1 && move[1] == -1) {
+        int[] move = GameModel.checkHorizontalByComputer();
+        if (move[0] == NO_SMART_MOVE && move[1] == NO_SMART_MOVE) {
             return getComputerMove(); // Fallback to random move if no smart move found
         }
         return move;
     }
+
     public static int[] getPlayerMove(int type) {
         Scanner scanner = new Scanner(System.in);
 
