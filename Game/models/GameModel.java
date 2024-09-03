@@ -25,7 +25,7 @@ public class GameModel {
             value = scanner.nextInt();
         }
         return value;
-    }
+    } //
 
     public void makeMove(int row, int col, int player) {
         if (isValidMove(row, col)) {
