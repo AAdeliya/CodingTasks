@@ -19,25 +19,20 @@ public class GameModel implements Subject {
     public static final int[][] board = new int[BOARD_SIZE][BOARD_SIZE];
 
      private List<Observer> observers = new ArrayList<>();
-
-    @Override
-    public void attach(Observer observer) {
-        observers.add(observer);
-    }
-
-    @Override
-    public void detach(Observer observer) {
-        observers.remove(observer);
-    }
-
-    @Override
+     
+     @Override
     public void notifyObservers() {
         for (Observer observer : observers) {
             observer.update();
         }
     }
+        @Override
+        public void attach(Observer observer) {
+            observers.add(observer);
+        }
+    
 
-    // Example of notifying observers after a move is made
+
     public void makeMove(int row, int col, int player) {
         if (isValidMove(row, col)) {
             board[row][col] = player;
@@ -199,9 +194,8 @@ public class GameModel implements Subject {
             
         }
         return true; 
+    
     }
-
-   
 }
 
 
