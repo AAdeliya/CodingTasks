@@ -1,10 +1,15 @@
 package Game.models;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
+import Game.Observer;
+import Game.Subject;
 
-public class GameModel {
+
+public class GameModel implements Subject {
   
     public static final int BOARD_SIZE = 3; 
     protected static final int EMPTY_SPACE = 0;
@@ -13,7 +18,33 @@ public class GameModel {
     protected static final int LAST_INDEX = BOARD_SIZE - 1;
     public static final int[][] board = new int[BOARD_SIZE][BOARD_SIZE];
 
+     private List<Observer> observers = new ArrayList<>();
 
+    @Override
+    public void attach(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void detach(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update();
+        }
+    }
+
+    // Example of notifying observers after a move is made
+    public void makeMove(int row, int col, int player) {
+        if (isValidMove(row, col)) {
+            board[row][col] = player;
+            notifyObservers();  // Notify observers after the move
+        }
+    }
+    
     public static boolean isValidMove(int row, int col) {
         return board[row][col] == 0;
     }
@@ -25,16 +56,10 @@ public class GameModel {
             value = scanner.nextInt();
         }
         return value;
-    } //
-
-    public void makeMove(int row, int col, int player) {
-        if (isValidMove(row, col)) {
-            board[row][col] = player;
-        }
-    }
+    } 
 
     public boolean checkWin() {
-        return checkVertical() || checkHorizontal() || checkDiagonal();
+        return checkVertical() || checkHorizontal() || checkDiagonal(); 
     }
 
     public boolean checkVertical() {
@@ -175,6 +200,8 @@ public class GameModel {
         }
         return true; 
     }
+
+   
 }
 
 

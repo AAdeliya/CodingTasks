@@ -1,16 +1,20 @@
 package Game.view;
 
 
-import java.util.Random;
+
 import java.util.Scanner;
-
-import Game.controllers.GameController;
-import Game.models.GameModel;
+import Game.Observer;
 
 
-public class GameView {
+public class GameView implements Observer{
 
     public static final int NO_SMART_MOVE = -1;
+
+    @Override
+    public void update() {
+        System.out.println("Game state has been updated!");
+        
+    }
     
     public void displayBoard(int[][] board) {
         for (int[] row : board) {

@@ -3,7 +3,6 @@ package Game.controllers;
 
 import java.util.Random;
 import java.util.Scanner;
-
 import Game.models.GameModel;
 import Game.view.GameView;
 
@@ -19,6 +18,7 @@ public class GameController {
     public GameController(GameModel model, GameView view) {
         this.model = model;
         this.view = view;
+        model.attach(view); //register the view as an observer to the model 
     }
 
     public void startGame() {
@@ -46,7 +46,7 @@ public class GameController {
             }
 
             // Validate and make the move
-            if (model.isValidMove(move[0], move[1])) {
+            if (GameModel.isValidMove(move[0], move[1])) {
                 model.makeMove(move[0], move[1], currentPlayer);
 
                 if (model.checkWin()) {
