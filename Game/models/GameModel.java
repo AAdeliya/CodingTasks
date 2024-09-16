@@ -19,6 +19,7 @@ public class GameModel implements Subject {
     public static final int[][] board = new int[BOARD_SIZE][BOARD_SIZE];
 
      private List<Observer> observers = new ArrayList<>();
+     //this list is used to store all the observers that want to be notified when the subject changes its state
      
      @Override
     public void notifyObservers() {
@@ -27,8 +28,8 @@ public class GameModel implements Subject {
         }
     }
         @Override
-        public void attach(Observer observer) {
-            observers.add(observer);
+        public void attach(Observer observer) { //allows any observer(game view) to register itself with the GameModel ensuring it gets updated when necessary
+            observers.add(observer); // add the passed observer to the observers list; 
         }
     
 
