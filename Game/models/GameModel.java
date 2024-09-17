@@ -31,10 +31,8 @@ public class GameModel implements Subject {
         public void attach(Observer observer) { //allows any observer(game view) to register itself with the GameModel ensuring it gets updated when necessary
             observers.add(observer); // add the passed observer to the observers list; 
         }
-    
-
-
-    public void makeMove(int row, int col, int player) {
+        
+        public void makeMove(int row, int col, int player) {
         if (isValidMove(row, col)) {
             board[row][col] = player;
             notifyObservers();  // Notify observers after the move
