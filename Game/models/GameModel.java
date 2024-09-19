@@ -191,6 +191,7 @@ public class GameModel implements Subject {
                 
             }
             }
+            
         return true; 
     
     }
