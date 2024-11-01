@@ -18,6 +18,7 @@ public class TodoManager {
     }
     return tasks;
     }
+
     public static void markTaskAsComplete(int id, String filePath) throws IOException {
     List<ToDo> tasks = loadTasksFromFile(filePath);
     for (ToDo task : tasks) {
@@ -28,6 +29,7 @@ public class TodoManager {
     }
     saveTasksToFile(filePath, tasks);
     }
+
     public static void displayTasks(List<ToDo> tasks) {
     for (ToDo task : tasks) {
     System.out.println("ID: " + task.getId() + ", Task: " + task.getTask() + ", Complete: " +
@@ -36,4 +38,4 @@ public class TodoManager {
     }
     }
     
-}
+
