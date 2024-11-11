@@ -1,0 +1,47 @@
+Overview:
+An interactive and customizable Tic-Tac-Toe game implemented using the Model-View-Controller (MVC) design pattern. This project demonstrates advanced object-oriented programming principles, including separation of concerns, efficient algorithms, and a flexible game structure. 
+The game features adjustable board dimensions and winning conditions, with a focus on optimized performance for both player-versus-player and player-versus-computer modes.
+
+Key Features:
+
+Customizable Game Settings: Users can select between different game types, including Human vs. Human, Human vs. Computer, and Human vs. Smarter Computer.
+
+Efficient Win-Checking Logic: Optimized algorithms ensure performance remains fast, even when checking for potential winning conditions on larger boards.
+
+Adaptive Computer AI:
+Basic AI: Makes random moves.
+Smart AI: Uses strategic move detection to increase difficulty, employing logic that identifies near-winning situations.
+Observer Pattern Implementation: The game uses the Observer pattern to keep the view updated when the game state changes, enhancing the responsiveness and maintainability of the code.
+Technical Details:
+
+
+Design Pattern:
+Model-View-Controller (MVC):
+
+Model: Manages game state, including the board and logic for validating moves and checking win conditions.
+
+View: Displays the game board and provides a user interface for input, registering as an observer to get notified of updates.
+
+Controller: Manages user interactions, game flow, and communication between the model and view.
+Programming Language: Java
+
+Object-Oriented Design: Utilizes classes and methods for efficient game state management and reusable logic.
+
+User Input Validation: Ensures players provide valid moves, with prompts for correction as needed.
+Classes and Methods:
+
+GameController: Handles game initialization, player turns, and the logic to switch between different game modes (Human vs. Human, Human vs. Computer, etc.). Implements both random and strategic AI for computer players.
+
+GameModel: Manages the game board and implements methods to check for winning conditions and valid moves. Uses the Observer pattern to notify the view when the game state changes.
+
+GameView: Provides a simple console-based interface for players, displaying the game board and messages. Updates dynamically when notified by the model.
+
+Challenges and Solutions:
+
+Efficient Win Detection:
+Challenge: Checking for winning conditions without performance loss on larger boards.
+Solution: Developed optimized algorithms to handle vertical, horizontal, and diagonal checks efficiently.
+
+AI Implementation:
+Challenge: Balancing game difficulty for the AI.
+Solution: Used a combination of random and strategic move algorithms, with the latter detecting potential player wins and blocking them.
